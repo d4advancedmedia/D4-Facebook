@@ -1,0 +1,38 @@
+.fb-image  {
+ max-width: 100%;
+}
+.fb-image.fb-portrait {
+  transform: translate(0%, -25%);
+}
+.albums .fb-image {
+  top: -20px;
+}
+#facebook-feed .fb-single-post {
+  float: left;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 24%;
+  position: relative;
+  width: 33.3%;
+}
+#facebook-feed .skivdiv-content {
+  background: #222 none repeat scroll 0 0;
+  border: 3px solid #222;
+  bottom: 5px;
+  left: 5px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+.albums .fb-text {
+  background: #222 none repeat scroll 0 0;
+  bottom: 0;
+  display: block;
+  left: 0;
+  padding: 5px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+}
