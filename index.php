@@ -2,10 +2,10 @@
 /*
 	Plugin Name: D4 Facebook Feed
 	Plugin URI: https://github.com/d4advancedmedia/
-	GitHub Theme URI: https://github.com/d4advancedmedia/
+	GitHub Plugin URI: https://github.com/d4advancedmedia/D4-Facebook
 	GitHub Branch: master
 	Description: D4 Facebook Feed
-	Version: 0.1
+	Version: 1.0.0
 	Author: D4 Adv. Media
 	License: GPL2
 */
@@ -13,9 +13,9 @@
 // Register and enqueue font-end plugin style sheets and scripts.
 add_action( 'wp_enqueue_scripts', 'register_d4facebook_elements' );
 function register_d4facebook_elements() {
-	wp_register_style( 'd4facebook', plugins_url( 'css/d4facebook.css' , __FILE__ ), '1' );
+	wp_register_style( 'd4facebook', plugins_url( 'css/d4facebook.css' , __FILE__ ), '1.0.0' );
 	wp_enqueue_style( 'd4facebook' );
-	wp_register_script( 'd4facebook', plugins_url( 'js/d4facebook.js' , __FILE__ ), array( 'jquery' ), '1', true );
+	wp_register_script( 'd4facebook', plugins_url( 'js/d4facebook.js' , __FILE__ ), array( 'jquery' ), '1.0.0', true );
 	wp_enqueue_script('d4facebook');	
 }
 
@@ -25,7 +25,7 @@ add_action('login_enqueue_scripts', 'd4facebook_admin_elements');
 function d4facebook_admin_elements() {
     wp_register_style('d4facebook-admin-theme', plugins_url('css/d4facebook-admin.css', __FILE__) );
     wp_enqueue_style('d4facebook-admin-theme' );
-    wp_register_script( 'd4facebook-admin-script', plugins_url( 'js/d4facebook-admin.js' , __FILE__ ), array( 'jquery' ), '1', true );
+    wp_register_script( 'd4facebook-admin-script', plugins_url( 'js/d4facebook-admin.js' , __FILE__ ), array( 'jquery' ), '1.0.0', true );
 	wp_enqueue_script('d4facebook-admin-script');
 }
 
