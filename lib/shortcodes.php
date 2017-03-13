@@ -53,7 +53,7 @@
 		$output = '<div id="facebook-feed"'.$class.'>';
 		foreach ( $jsonResult->data as $item ) {			
 			if ($i <= $show) {
-            	$caption = $item->name;
+            	$caption = htmlspecialchars($item->name);
 
             	if ($atts['type'] == 'albums') {
 						$albumID = $item->id;
