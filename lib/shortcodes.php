@@ -35,10 +35,10 @@
 	}
 
 	if ($atts['type'] == 'albums') {
-		$type = 'albums?';
+		$type = 'albums?fields=cover_photo,name&';
 		$class = ' class="albums"';
 	} else {
-		$type = 'photos?type=uploaded&';
+		$type = 'photos?type=uploaded&fields=images,name&';
 	}
 
 	$authToken = "https://graph.facebook.com/oauth/access_token?grant_type=client_credentials&client_id={$facebookCredentials['app_id']}&client_secret={$facebookCredentials['app_secret']}";
@@ -48,24 +48,41 @@
 	$apiResult = wp_remote_get($url);
 	$jsonResult = json_decode($apiResult['body']);
 
+	#print_r($apiResult);
+
 	$i = 1;
 
 		$output = '<div id="facebook-feed"'.$class.'>';
 		foreach ( $jsonResult->data as $item ) {			
 			if ($i <= $show) {
-            	$caption = $item->name;
+            	$caption = htmlspecialchars($item->name);
 
             	if ($atts['type'] == 'albums') {
-						$albumID = $item->id;
-						$cover_photo_id = $item->cover_photo;
-						$newurl = 'https://graph.facebook.com/'.$cover_photo_id.'?access_token='.$facebookCredentials["authToken"].'';
-						$cover_photo_api = wp_remote_get($newurl);
-						$cover_photo_jsonResult = json_decode($cover_photo_api['body']);
-						$image_url = $cover_photo_jsonResult->source;
-						$link = 'href="?album='.$albumID.'"';
+            		
+
+					$cp_fetch = "https://graph.facebook.com/".$item->cover_photo->id."?type=uploaded&fields=images&access_token={$facebookCredentials['authToken']}";
+					$cp_Result = wp_remote_get($cp_fetch);
+					$cp_jsonResult = json_decode($cp_Result['body']);
+
+					$c = 1;				
+					foreach($cp_jsonResult->images as $single_img) {
+						if($c == 1) {
+							$image_url = $single_img->source;
+							$c++;
+						}
 					}
+					$link = 'href="?album='.$item->id.'"';
+				}
 				else {
-					$image_url = $item->source;
+
+					$c = 1;				
+					foreach($item->images as $single_img) {
+						if($c == 1) {
+							$image_url = $single_img->source;
+							$c++;
+						}
+					}
+										
 					$image_orig = $item->link;
 					$link = 'href="'.$image_url.'" class="swipebox"';        	
 				}
