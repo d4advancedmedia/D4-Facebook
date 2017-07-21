@@ -5,11 +5,19 @@
 	GitHub Plugin URI: https://github.com/d4advancedmedia/D4-Facebook
 	GitHub Branch: master
 	Description: D4 Facebook Feed
+<<<<<<< HEAD
 	Version: 1.0.2
 	Author: D4 Adv. Media
 	License: GPL2
 */
 $d4facebook_version = '1.0.2';
+=======
+	Version: 1.0.1
+	Author: D4 Adv. Media
+	License: GPL2
+*/
+$d4facebook_version = '1.1.0';
+>>>>>>> origin/master
 
 // Register and enqueue font-end plugin style sheets and scripts.
 add_action( 'wp_enqueue_scripts', 'register_d4facebook_elements' );
